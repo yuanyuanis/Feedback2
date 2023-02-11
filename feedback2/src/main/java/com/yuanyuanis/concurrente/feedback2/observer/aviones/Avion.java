@@ -1,10 +1,15 @@
 package com.yuanyuanis.concurrente.feedback2.observer.aviones;
 
 
+import lombok.Getter;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Avion extends Observable {
+@Getter
+public class Avion {
 
     public enum Direccion {
         DERECHA, IZQUIERDA;
@@ -18,8 +23,9 @@ public class Avion extends Observable {
     private int velocidad;
     private Direccion direccion;
 
-    private Observer observer;
     private Accion accion;
+    private PropertyChangeSupport support;
+
 
     public Avion(int altura, int velocidad, Direccion direccion) {
         this.altura = altura;
@@ -27,75 +33,49 @@ public class Avion extends Observable {
         this.direccion = direccion;
     }
 
-    public int getAltura() {
-        return altura;
+    public void addObserver(PropertyChangeListener observer) {
+        support.addPropertyChangeListener(observer);
     }
 
-    public int getVelocidad() {
-        return velocidad;
-    }
 
-    public Direccion getDireccion() {
-        return direccion;
-    }
+
+    // Acciones
 
     public void subir() {
         altura += 100;
         accion = Accion.SUBIR;
-        notifyObservers();
+        if (this instanceof AvionPerseguidor == false)
+            support.firePropertyChange("Accion", null, Accion.SUBIR);
     }
 
     public void bajar() {
         altura -= 100;
         accion = Accion.BAJAR;
-        notifyObservers();
+        if (this instanceof AvionPerseguidor == false)
+            support.firePropertyChange("Accion", null, Accion.BAJAR);
     }
 
     public void acelerar() {
         velocidad += 200;
         accion = Accion.ACELERAR;
-        notifyObservers();
+        if (this instanceof AvionPerseguidor == false)
+            support.firePropertyChange("Accion", null, Accion.ACELERAR);
     }
 
     public void frenar() {
         velocidad -= 200;
         accion = Accion.FRENAR;
-        notifyObservers();
+        if (this instanceof AvionPerseguidor == false)
+            support.firePropertyChange("Accion", null, Accion.FRENAR);
     }
 
     public void girar(Direccion direccion) {
         this.direccion = direccion;
         accion = Accion.GIRAR;
-        notifyObservers();
+        if (this instanceof AvionPerseguidor == false)
+            support.firePropertyChange("Accion", null, Accion.GIRAR);
     }
 
-    @Override
-    public void addObserver(Observer observer) {
-        this.observer = observer;
-    }
 
-    @Override
-    public void notifyObservers() {
-        if (observer != null) {
-            switch (accion) {
-                case SUBIR:
-                    observer.update(this, Accion.SUBIR);
-                    break;
-                case BAJAR:
-                    observer.update(this, Accion.BAJAR);
-                    break;
-                case ACELERAR:
-                    observer.update(this, Accion.ACELERAR);
-                    break;
-                case FRENAR:
-                    observer.update(this, Accion.FRENAR);
-                    break;
-                case GIRAR:
-                    observer.update(this, Accion.GIRAR);
-                    break;
-                default:
-            }
-        }
 
-    }
 }

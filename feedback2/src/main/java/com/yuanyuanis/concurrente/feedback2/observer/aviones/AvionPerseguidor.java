@@ -1,6 +1,8 @@
 package com.yuanyuanis.concurrente.feedback2.observer.aviones;
 
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,16 +12,17 @@ import java.util.Observer;
  * @author Santiago Faci
  * @version curso 2016-2017
  */
-public class AvionPerseguidor extends Avion implements Observer {
+public class AvionPerseguidor extends Avion implements PropertyChangeListener {
 
     public AvionPerseguidor(int altura, int velocidad, Direccion direccion) {
+
         super(altura, velocidad, direccion);
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void propertyChange(PropertyChangeEvent evt) {
 
-        Accion accion = (Accion) arg;
+        Accion accion = (Accion) evt.getNewValue();
         switch (accion) {
             case SUBIR:
                 subir();
