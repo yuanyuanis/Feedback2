@@ -21,6 +21,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>14</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
