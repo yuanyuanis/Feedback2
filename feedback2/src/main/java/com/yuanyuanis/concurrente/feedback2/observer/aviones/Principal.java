@@ -7,8 +7,9 @@ public class Principal {
 
     public static void main(String args[]) {
 
-        AvionPerseguidor perseguidor = new AvionPerseguidor(2000, 200, Avion.Direccion.IZQUIERDA);
-        Avion avion = new Avion(1000, 100, Avion.Direccion.DERECHA);
+
+        Avion avion = new Avion(1000, 100, TipoMovimiento.Direccion.DERECHA);
+        AvionPerseguidor perseguidor = new AvionPerseguidor(2000, 200, TipoMovimiento.Direccion.IZQUIERDA);
         avion.addObserver(perseguidor);
 
         /* Para cada cambio que hace el avión se podrá comprobar en pantalla
@@ -17,14 +18,14 @@ public class Principal {
         avion.subir();
         avion.bajar();
         avion.bajar();
-        avion.girar(Avion.Direccion.IZQUIERDA);
-        avion.girar(Avion.Direccion.DERECHA);
+        avion.girar(TipoMovimiento.Direccion.IZQUIERDA);
+        avion.girar(TipoMovimiento.Direccion.DERECHA);
         avion.acelerar();
 
         System.out.println();
         System.out.println("Altura perseguidor " + perseguidor.getAltura());
         System.out.println("Velocidad perseguidor " + perseguidor.getVelocidad());
-        System.out.println("Dirección perseguidor " + perseguidor.getDireccion().toString());
+        System.out.println("Dirección perseguidor " + perseguidor.getDirection().toString());
     }
 }
 

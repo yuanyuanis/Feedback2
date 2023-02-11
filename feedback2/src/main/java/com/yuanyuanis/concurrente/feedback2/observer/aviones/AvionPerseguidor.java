@@ -3,18 +3,11 @@ package com.yuanyuanis.concurrente.feedback2.observer.aviones;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Observable;
-import java.util.Observer;
 
-/**
- * Avión perseguidor. Persigue a un Avión normal y cambia su altura,
- * velocidad y dirección en función de los cambios del avión perseguido
- * @author Santiago Faci
- * @version curso 2016-2017
- */
+
 public class AvionPerseguidor extends Avion implements PropertyChangeListener {
 
-    public AvionPerseguidor(int altura, int velocidad, Direccion direccion) {
+    public AvionPerseguidor(int altura, int velocidad, TipoMovimiento.Direccion direccion) {
 
         super(altura, velocidad, direccion);
     }
@@ -22,8 +15,17 @@ public class AvionPerseguidor extends Avion implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
-        Accion accion = (Accion) evt.getNewValue();
-        switch (accion) {
+        TipoMovimiento tipoMovimiento = (TipoMovimiento) evt.getNewValue();
+
+        System.out.println("Avión perseguidor tratando de perseguir ... nombre del thread: " + Thread.currentThread().getName());
+
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        switch (tipoMovimiento.getAccion()) {
             case SUBIR:
                 subir();
                 System.out.println("El perseguidor sube");
@@ -41,7 +43,7 @@ public class AvionPerseguidor extends Avion implements PropertyChangeListener {
                 System.out.println("El perseguidor frena");
                 break;
             case GIRAR:
-                girar(((Avion) o).getDireccion());
+                girar(tipoMovimiento.getDireccion());
                 System.out.println("El perseguidor gira");
                 break;
             default:
