@@ -22,7 +22,7 @@ public class ZipAndCopyServiceFutureImpl implements ZipAndCopyService {
 
         // Esperar a que la tarea se complete
         try {
-            Path path = future.get();                                               // hilo espera aquí a completarse
+            future.get();                                               // hilo espera aquí a completarse
         } catch (Exception e){
             e.printStackTrace();
         }

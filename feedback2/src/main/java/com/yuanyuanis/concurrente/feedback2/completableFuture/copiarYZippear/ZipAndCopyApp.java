@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 public class ZipAndCopyApp extends JFrame {
 
 
-
     private JButton origenButton;
     private JButton destinoButton;
     private JButton ejecutar;
@@ -18,28 +17,20 @@ public class ZipAndCopyApp extends JFrame {
     private JTextField destinoText;
 
 
-
     public ZipAndCopyApp() {
         initComponents();
     }
 
     private void seleccionarDirectorioOrigen(ActionEvent e) {
-        // 1) Gestión de la selección
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int result = fileChooser.showSaveDialog(ZipAndCopyApp.this);
-
-        // 2) Invocar a la lógica de negocio.
-        if (result == JFileChooser.APPROVE_OPTION) {
-
-            String rutaGuardarFichero = fileChooser.getSelectedFile().getAbsolutePath();
-            origenText.setText(rutaGuardarFichero);
-        }
-        intentarHabilitarEjecutar();
+        seleccionarDirectorio(true);
     }
 
+
     private void seleccionarDirectorioDestino(ActionEvent e) {
-        // 1) Gestión de la selección
+        seleccionarDirectorio(false);
+    }
+
+    private void seleccionarDirectorio(boolean origen) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int result = fileChooser.showSaveDialog(ZipAndCopyApp.this);
@@ -48,17 +39,18 @@ public class ZipAndCopyApp extends JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
 
             String rutaGuardarFichero = fileChooser.getSelectedFile().getAbsolutePath();
-            destinoText.setText(rutaGuardarFichero);
+            if(origen)
+                origenText.setText(rutaGuardarFichero);
+            else
+                destinoText.setText(rutaGuardarFichero);
         }
+        // Botón de ejecutar solo se habilita si origen y destino están establecidos.
         intentarHabilitarEjecutar();
-
     }
 
     private void intentarHabilitarEjecutar() {
         if (origenText.getText() != null && !origenText.getText().isEmpty()) {
-            if (destinoText.getText() != null && !destinoText.getText().isEmpty()) {
-                ejecutar.setEnabled(true);
-            }
+            ejecutar.setEnabled(true);
         }
     }
 
