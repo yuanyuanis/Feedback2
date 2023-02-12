@@ -1,15 +1,13 @@
 package com.yuanyuanis.concurrente.feedback2.completableFuture.copiarYZippear;
 
 
-import com.yuanyuanis.concurrente.feedback2.completableFuture.descargarFicheros.DescargarService;
-
 import java.nio.file.Path;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class ZipAndCopyFutureImpl implements ZipAndCopy {
+public class ZipAndCopyServiceFutureImpl implements ZipAndCopyService {
     @Override
     public void zippearYCopiar(String origenPath, String destinoPath) {
 
@@ -17,7 +15,7 @@ public class ZipAndCopyFutureImpl implements ZipAndCopy {
 
         // La tarea extraída a interfaz para evitar duplicidad de código
         Callable<Path> callable = () -> {
-            return ZipAndCopy.getZipAbsoluteName(origenPath, destinoPath);
+            return ZipAndCopyService.getZipAbsoluteName(origenPath, destinoPath);
         };
 
         Future<Path> future = executor.submit(callable);

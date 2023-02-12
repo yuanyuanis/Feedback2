@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public interface ZipAndCopy {
+public interface ZipAndCopyService {
 
     void zippearYCopiar(String origenPath, String destinoPath);
 

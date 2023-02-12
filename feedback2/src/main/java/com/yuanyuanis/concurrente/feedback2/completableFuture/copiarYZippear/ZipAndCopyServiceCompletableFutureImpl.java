@@ -2,13 +2,10 @@ package com.yuanyuanis.concurrente.feedback2.completableFuture.copiarYZippear;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
-public class ZipAndCopyCompletableFutureImpl implements ZipAndCopy{
+public class ZipAndCopyServiceCompletableFutureImpl implements ZipAndCopyService {
 
     /**
      * Implementación de llamada asíncrona CompletableFuture
@@ -22,7 +19,7 @@ public class ZipAndCopyCompletableFutureImpl implements ZipAndCopy{
         // Extraída la tarea método estático en interfaz.
         // En sí, ZipAndCopy.getZipAbsoluteName(origenPath, destinoPath) representa el Callable.
         CompletableFuture.supplyAsync(() -> {
-            return ZipAndCopy.getZipAbsoluteName(origenPath, destinoPath);
+            return ZipAndCopyService.getZipAbsoluteName(origenPath, destinoPath);
         }).thenAccept(path -> {
             try {
                 Files.copy(path, Paths.get(destinoPath));
