@@ -67,8 +67,8 @@ public class ZipAndCopyApp extends JFrame {
 
         if(ejecutar.isEnabled()){
             // ------------------------------ DESCOMENTAR PARA ELEGIR IMPLEMENTACION --------------------------------/
-            // ZipAndCopyService service = new ZipAndCopyServiceFutureImpl():
-            ZipAndCopyService service = new ZipAndCopyServiceCompletableFutureImpl();
+            ZipAndCopyService service = new ZipAndCopyServiceFutureImpl();
+            // ZipAndCopyService service = new ZipAndCopyServiceCompletableFutureImpl();
             service.zippearYCopiar(origenText.getText(), destinoText.getText());
         }
 

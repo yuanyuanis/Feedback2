@@ -19,14 +19,16 @@ public class ZipAndCopyServiceCompletableFutureImpl implements ZipAndCopyService
         // Extraída la tarea método estático en interfaz.
         // En sí, ZipAndCopy.getZipAbsoluteName(origenPath, destinoPath) representa el Callable.
         CompletableFuture.supplyAsync(() -> {
-            return ZipCompressAndMove.compressAndMove(origenPath, destinoPath);
+            return ZipCompress.compress(origenPath, destinoPath);
         }).thenAccept(path -> {
             try {
-                Files.copy(path, Paths.get(destinoPath));
+                ZipCompress.moveFile(path, Paths.get(destinoPath+ZipCompress.nombreZip));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
+        ZipAndCopyService.mostrarResultado("El Archivo se copio satisfactoriamente");
     }
 
 
