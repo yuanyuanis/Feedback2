@@ -15,8 +15,9 @@ public class ZipCompressAndMove {
     public static Path compressAndMove( String origenPath, String destinoPath) {
         final Path source = Paths.get(origenPath);
 
+
         try {
-            final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(nombreZip));
+            final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(destinoPath+"/"+"archivo.zip"));
             Files.walkFileTree(source, new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
@@ -37,18 +38,9 @@ public class ZipCompressAndMove {
             e.printStackTrace();
         }
 
-        Path src = Paths.get(origenPath +"/"+nombreZip);
-        Path destino = Paths.get(destinoPath);
-        try {
-            moveFile(src, destino);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         return null;
     }
 
-    private static void moveFile(Path src, Path dest) throws IOException {
-        Files.move(src, dest);
-    }
+
 
 }
