@@ -12,7 +12,7 @@ public class ZipAndCopyCompletableFutureImpl implements ZipAndCopy{
     @Override
     public void zipearYCopiar(String origenPath, String destinoPath) {
         CompletableFuture.supplyAsync(() -> {
-            return getZipAbsuloteName(origenPath, destinoPath);
+            return getZipAbsoluteName(origenPath, destinoPath);
         }).thenAccept(path -> {
             try {
                 Files.copy(path, Paths.get(destinoPath));
@@ -22,7 +22,7 @@ public class ZipAndCopyCompletableFutureImpl implements ZipAndCopy{
         });
     }
 
-    private static Path getZipAbsuloteName(String origenPath, String destinoPath) {
+    private static Path getZipAbsoluteName(String origenPath, String destinoPath) {
         Path origen = Paths.get(origenPath);
         Path destino = Paths.get(destinoPath);
 

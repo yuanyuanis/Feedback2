@@ -70,6 +70,8 @@ public class MainApp extends JFrame {
         origenText = new javax.swing.JTextField();
         destinoText = new javax.swing.JTextField();
 
+        destinoButton.setText("Seleccionar Destino");
+
         origenText.setEnabled(false);
         destinoText.setEnabled(false);
         ejecutar.setEnabled(false);
@@ -91,7 +93,6 @@ public class MainApp extends JFrame {
             }
         });
 
-        destinoButton.setText("Seleccionar Destino");
         destinoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 copiar(evt);
@@ -182,6 +183,5 @@ public class MainApp extends JFrame {
             }
         });
     }
-
 
 }
