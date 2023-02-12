@@ -12,7 +12,7 @@ public class ZipCompressAndMove {
 
     private static final String nombreZip = "archivo.zip";
 
-    public static Path compressAndMove(String destinoPath, String origenPath) {
+    public static Path compressAndMove( String origenPath, String destinoPath) {
         final Path source = Paths.get(origenPath);
 
         try {
