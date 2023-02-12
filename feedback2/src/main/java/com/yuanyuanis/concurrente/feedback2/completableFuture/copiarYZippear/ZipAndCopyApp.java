@@ -110,7 +110,7 @@ public class ZipAndCopyApp extends JFrame {
             }
         });
 
-        destinoButton.addActionListener(new ActionListener() {
+        ejecutar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 copiar(evt);
             }

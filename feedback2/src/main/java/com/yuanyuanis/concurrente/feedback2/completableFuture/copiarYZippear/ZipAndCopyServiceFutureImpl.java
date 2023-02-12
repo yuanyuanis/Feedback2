@@ -15,7 +15,7 @@ public class ZipAndCopyServiceFutureImpl implements ZipAndCopyService {
 
         // La tarea extraída a interfaz para evitar duplicidad de código
         Callable<Path> callable = () -> {
-            return ZipAndCopyService.getZipAbsoluteName(origenPath, destinoPath);
+            return ZipCompressAndMove.compressAndMove(origenPath, destinoPath);
         };
 
         Future<Path> future = executor.submit(callable);
