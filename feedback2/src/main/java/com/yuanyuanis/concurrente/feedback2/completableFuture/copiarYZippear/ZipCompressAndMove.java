@@ -10,12 +10,13 @@ import java.util.zip.ZipOutputStream;
 
 public class ZipCompressAndMove {
 
+    private static final String nombreZip = "archivo.zip";
+
     public static Path compressAndMove(String destinoPath, String origenPath) {
         final Path source = Paths.get(origenPath);
 
-        String zipFileName = "archivo.zip";
         try {
-            final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(zipFileName));
+            final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(nombreZip));
             Files.walkFileTree(source, new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
@@ -35,11 +36,18 @@ public class ZipCompressAndMove {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        moveFile();
+
+        Path src = Paths.get(origenPath +"/"+nombreZip);
+        Path destino = Paths.get(destinoPath);
+        try {
+            moveFile(src, destino);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
-    private static void moveFile(File src, File dest) throws IOException {
+    private static void moveFile(Path src, Path dest) throws IOException {
         Files.move(src, dest);
     }
 
