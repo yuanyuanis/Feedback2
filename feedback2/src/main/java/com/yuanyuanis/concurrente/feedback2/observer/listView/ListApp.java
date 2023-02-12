@@ -1,4 +1,4 @@
-package com.yuanyuanis.concurrente.feedback2.observer.aviones.listView;
+package com.yuanyuanis.concurrente.feedback2.observer.listView;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
