@@ -9,10 +9,20 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class ZipAndCopyCompletableFutureImpl implements ZipAndCopy{
+
+    /**
+     * Implementación de llamada asíncrona CompletableFuture
+     * @param origenPath
+     * @param destinoPath
+     */
     @Override
-    public void zipearYCopiar(String origenPath, String destinoPath) {
+    public void zippearYCopiar(String origenPath, String destinoPath) {
+
+
+        // Extraída la tarea método estático en interfaz.
+        // En sí, ZipAndCopy.getZipAbsoluteName(origenPath, destinoPath) representa el Callable.
         CompletableFuture.supplyAsync(() -> {
-            return getZipAbsoluteName(origenPath, destinoPath);
+            return ZipAndCopy.getZipAbsoluteName(origenPath, destinoPath);
         }).thenAccept(path -> {
             try {
                 Files.copy(path, Paths.get(destinoPath));
@@ -22,26 +32,5 @@ public class ZipAndCopyCompletableFutureImpl implements ZipAndCopy{
         });
     }
 
-    private static Path getZipAbsoluteName(String origenPath, String destinoPath) {
-        Path origen = Paths.get(origenPath);
-        Path destino = Paths.get(destinoPath);
 
-        try (ZipOutputStream zos = new ZipOutputStream(Files.newOutputStream(destino))) {
-            Files.walk(origen)
-                    .filter(path -> !Files.isDirectory(path))
-                    .forEach(path -> {
-                        ZipEntry zipEntry = new ZipEntry(origen.relativize(path).toString());
-                        try {
-                            zos.putNextEntry(zipEntry);
-                            Files.copy(path, zos);
-                            zos.closeEntry();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return destino;
-    }
 }
