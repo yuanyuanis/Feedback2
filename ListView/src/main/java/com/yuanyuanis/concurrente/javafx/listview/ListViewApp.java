@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -21,36 +22,68 @@ public class ListViewApp extends Application {
         ListView<Pelicula> listView = new ListView<>();
         TextField anio = new TextField();
         TextField nombrePelicula = new TextField();
+        Label anioLabel = new Label("Año");
+        Label nombrePeliculaLabel = new Label("Nombre de película");
         Button button = new Button("Añadir Película");
 
+        // Observable list
         ObservableList<Pelicula> peliculas = FXCollections.observableArrayList();
         listView.setItems(peliculas);
 
         button.setOnAction(event -> {
-            peliculas.add(new Pelicula(anio.getText(), nombrePelicula.getText()));
+            if(validarDatosEntrada(anio, nombrePelicula)) {
+                peliculas.add(new Pelicula(Integer.valueOf(anio.getText()), nombrePelicula.getText()));
 
-            // Limpiar campos
-            nombrePelicula.clear();
-            anio.clear();
+                // Limpiar campos
+                nombrePelicula.clear();
+                anio.clear();
+            }
+
         });
 
-        // Añadir película
-        HBox hBox = new HBox();
-        hBox.setPadding(new Insets(10));
-        hBox.setSpacing(10);
-        hBox.getChildren().addAll(anio, nombrePelicula, button);
+        // Campo año
+        HBox anioHBox = new HBox();
+        anioHBox.setPadding(new Insets(8));
+        anioHBox.setSpacing(10);
+        anioHBox.getChildren().addAll(anioLabel, anio);
+
+        // Campo nombre de película
+        HBox nameHBox = new HBox();
+        nameHBox.setPadding(new Insets(8));
+        nameHBox.setSpacing(10);
+        nameHBox.getChildren().addAll(nombrePeliculaLabel, nombrePelicula);
 
         // Listado de películas
         VBox root = new VBox();
-        root.setPadding(new Insets(10));
+        root.setPadding(new Insets(8));
         root.setSpacing(10);
-        root.getChildren().addAll(listView, hBox);
+        root.getChildren().addAll(listView, anioHBox, nameHBox, button );
 
-        // Ecenario
-        Scene scene = new Scene(root, 300, 500);
+        // Escenario
+        Scene scene = new Scene(root, 410, 520);
         stage.setScene(scene);
+        stage.setTitle("App List peliculas observables");
         stage.show();
 
+    }
+
+    private boolean validarDatosEntrada(TextField anio, TextField nombrePelicula) {
+        boolean valido = true;
+        if(nombrePelicula.getText().isEmpty()){
+            nombrePelicula.setText("Error, Introduce un nombre");
+            valido = false;
+        }
+        if(anio.getText().isEmpty()){
+            anio.setText("Error, Introduce año");
+            valido = false;
+        }
+        try{
+            Integer.parseInt(anio.getText());
+        } catch (NumberFormatException e){
+            valido = false;
+            anio.setText("Error, Introduce año");
+        }
+        return  valido;
     }
 
     public static void main(String[] args) {
