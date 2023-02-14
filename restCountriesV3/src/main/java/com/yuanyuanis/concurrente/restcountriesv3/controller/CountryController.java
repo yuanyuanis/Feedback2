@@ -52,12 +52,6 @@ public class CountryController {
         countryTable.setItems(countryData);
     }
 
-    @FXML
-    public void handleSearchAction() {
-
-
-    }
-
     public void handleSearchButton(ActionEvent actionEvent) {
         String name = nameField.getText();
         boolean independent = independentCheckBox.isSelected();
