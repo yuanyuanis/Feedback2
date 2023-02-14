@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -49,12 +48,8 @@ public class CountryController {
         CountriesService countriesService = new CountriesService();
         countryData.addAll(countriesService.getAllCountries());
 
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        capitalColumn.setCellValueFactory(new PropertyValueFactory<>("capital"));
-        regionColumn.setCellValueFactory(new PropertyValueFactory<>("region"));
-        subregionColumn.setCellValueFactory(new PropertyValueFactory<>("subregion"));
-        independentColumn.setCellValueFactory(new PropertyValueFactory<>("independent"));
-        populationColumn.setCellValueFactory(new PropertyValueFactory<>("population"));
+        // 3) Ponemos los datos.
+        countryTable.setItems(countryData);
     }
 
     @FXML
@@ -68,11 +63,6 @@ public class CountryController {
         boolean independent = independentCheckBox.isSelected();
         String region = regionField.getText();
 
-        // 1) Observable
-        countryData = FXCollections.observableArrayList();
 
-        // 2) Llamada a la API
-        CountriesService countriesService = new CountriesService();
-        countryData.addAll(countriesService.getAllCountries());
     }
 }
