@@ -35,25 +35,10 @@ public class RestAPICountries extends Application {
         TableColumn<Country, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        TableColumn<Country, String> capitalCol = new TableColumn<>("Capital");
-        capitalCol.setCellValueFactory(new PropertyValueFactory<>("capital"));
-
-        TableColumn<Country, String> regionCol = new TableColumn<>("Region");
-        regionCol.setCellValueFactory(new PropertyValueFactory<>("region"));
-
-        TableColumn<Country, String> subregionCol = new TableColumn<>("Subregion");
-        subregionCol.setCellValueFactory(new PropertyValueFactory<>("subregion"));
-
-        TableColumn<Country, Boolean> independentCol = new TableColumn<>("Independent");
-        independentCol.setCellValueFactory(new PropertyValueFactory<>("independent"));
-
-        TableColumn<Country, Integer> populationCol = new TableColumn<>("Population");
-        populationCol.setCellValueFactory(new PropertyValueFactory<>("population"));
-
         // Crear la tabla y agregar las columnas
         table = new TableView<>();
         table.setItems(countryData);
-        table.getColumns().addAll(nameCol, capitalCol, regionCol, subregionCol, independentCol, populationCol);
+        table.getColumns().addAll(nameCol);
 
         // Crear el contenedor principal de la GUI y agregar la tabla
         VBox root = new VBox();
