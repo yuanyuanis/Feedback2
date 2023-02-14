@@ -1,7 +1,7 @@
 package com.yuanyuanis.concurrente.restcountriesv3.service;
 
 
-import com.yuanyuanis.concurrente.restcountries.restcountries2_countriesdetail.domain.Country;
+import com.yuanyuanis.concurrente.restcountriesv3.domain.Country;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
