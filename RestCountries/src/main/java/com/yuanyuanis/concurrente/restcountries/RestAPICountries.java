@@ -1,6 +1,7 @@
 package com.yuanyuanis.concurrente.restcountries;
 
 import com.yuanyuanis.concurrente.restcountries.domain.Country;
+import com.yuanyuanis.concurrente.restcountries.service.CountriesService;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,15 +21,17 @@ public class RestAPICountries extends Application {
     public void start(Stage primaryStage) {
         // Crear los objetos de país y agregarlos a la lista
         countryData = FXCollections.observableArrayList();
-        countryData.add(new Country("Argentina","Buenos Aires", "Americas", "South America", true, 44938712));
-        countryData.add(new Country("Brasil","Brasilia", "Americas", "South America", true, 211755692));
-        countryData.add(new Country("España","Madrid", "Europe", "Southern Europe", true, 47329981));
-        countryData.add(new Country("Italia","Roma", "Europe", "Southern Europe", true, 60359546));
-        countryData.add(new Country("Nosee","Canberra", "Oceania", "Australia and New Zealand", true, 25755309));
-        countryData.add(new Country("Japon","Tokyo", "Asia", "Eastern Asia", true, 1264764612));
+
+        CountriesService countriesService = new CountriesService();
+        countryData.addAll(countriesService.getAllCountries());
+
+        // La vista en JavaFX
+        crearLookAndFeel(primaryStage);
+    }
+
+    private void crearLookAndFeel(Stage primaryStage) {
 
         // Crear las columnas de la tabla y asociarlas con los campos de país
-
         TableColumn<Country, String> nameCol = new TableColumn<>("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
