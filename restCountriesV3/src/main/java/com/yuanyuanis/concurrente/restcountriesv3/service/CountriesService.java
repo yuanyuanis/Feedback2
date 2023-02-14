@@ -1,7 +1,6 @@
 package com.yuanyuanis.concurrente.restcountriesv3.service;
 
-import com.yuanyuanis.concurrente.restcountries.restcountries2_countriesdetail.domain.Country;
-import com.yuanyuanis.concurrente.restcountries.restcountries2_countriesdetail.util.Constants;
+import com.yuanyuanis.concurrente.restcountriesv3.domain.Country;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -16,7 +15,7 @@ public class CountriesService {
 
     public CountriesService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.URL)
+                .baseUrl("https://restcountries.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
