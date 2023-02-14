@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <BorderPane fx:controller="com.yuanyuanis.concurrente.restcountriesv3.controller.CountryController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <center>
         <TableView fx:id="countryTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -34,6 +31,7 @@
                             <children>
                                 <Label text="Region: " />
                                 <TextField fx:id="regionField"/>
+                            </children>
                         </HBox>
                     </children>
                 </VBox>
@@ -41,19 +39,7 @@
                 <VBox spacing="10.0">
                     <children>
                         <CheckBox fx:id="independentCheckBox" text="Independent"/>
-                        <HBox spacing="10.0">
-                            <children>
-                                <Label text="Population: " />
-                                <ComboBox fx:id="populationComboBox">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="Greater than"/>
-                                            <String fx:value="Less than"/>
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
-                            </children>
-                        </HBox>
+
                     </children>
                 </VBox>
                 <Separator orientation="VERTICAL" prefHeight="200.0" />
