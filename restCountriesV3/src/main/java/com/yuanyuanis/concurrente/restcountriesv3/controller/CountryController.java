@@ -20,7 +20,6 @@ public class CountryController {
     @FXML private TextField nameField;
     @FXML private TextField regionField;
     @FXML private CheckBox independentCheckBox;
-    @FXML private ComboBox<String> populationComboBox;
 
     @FXML
     private TableColumn<Country, String> nameColumn;
@@ -50,7 +49,6 @@ public class CountryController {
         CountriesService countriesService = new CountriesService();
         countryData.addAll(countriesService.getAllCountries());
 
-        populationComboBox.getItems().addAll("Greater", "Lesser");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         capitalColumn.setCellValueFactory(new PropertyValueFactory<>("capital"));
         regionColumn.setCellValueFactory(new PropertyValueFactory<>("region"));
@@ -67,7 +65,6 @@ public class CountryController {
 
     public void handleSearchButton(ActionEvent actionEvent) {
         String name = nameField.getText();
-        String populationOption = populationComboBox.getValue();
         boolean independent = independentCheckBox.isSelected();
         String region = regionField.getText();
 
