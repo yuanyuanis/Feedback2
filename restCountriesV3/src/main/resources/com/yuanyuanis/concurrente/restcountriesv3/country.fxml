@@ -3,16 +3,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane fx:controller="com.yuanyuanis.concurrente.restcountriesv3.controller.CountryController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <center>
-        <TableView fx:id="countryTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="countryTable" prefHeight="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name"/>
-                <TableColumn fx:id="capitalColumn" prefWidth="75.0" text="Capital"/>
-                <TableColumn fx:id="regionColumn" prefWidth="75.0" text="Region"/>
-                <TableColumn fx:id="subregionColumn" prefWidth="75.0" text="Subregion"/>
-                <TableColumn fx:id="independentColumn" prefWidth="75.0" text="Independent"/>
-                <TableColumn fx:id="populationColumn" prefWidth="75.0" text="Population"/>
+                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name">
+                    <cellValueFactory><PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="capitalColumn" prefWidth="75.0" text="Capital">
+                    <cellValueFactory><PropertyValueFactory property="capital" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="regionColumn" prefWidth="75.0" text="Region">
+                    <cellValueFactory><PropertyValueFactory property="region" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="subregionColumn" prefWidth="75.0" text="Subregion">
+                    <cellValueFactory><PropertyValueFactory property="subregion" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="independentColumn" prefWidth="75.0" text="Independent">
+                    <cellValueFactory><PropertyValueFactory property="independent" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="populationColumn" prefWidth="75.0" text="Population">
+                    <cellValueFactory><PropertyValueFactory property="population" />
+                    </cellValueFactory>
+                </TableColumn>
             </columns>
         </TableView>
     </center>
