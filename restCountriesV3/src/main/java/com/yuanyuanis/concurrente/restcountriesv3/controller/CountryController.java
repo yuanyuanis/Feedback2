@@ -10,7 +10,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.stream.Collectors;
 
 public class CountryController {
 
@@ -54,9 +55,18 @@ public class CountryController {
 
     public void handleSearchButton(ActionEvent actionEvent) {
         String name = nameField.getText();
-        boolean independent = independentCheckBox.isSelected();
+        Boolean independent = independentCheckBox.isSelected();
         String region = regionField.getText();
 
+        // TODO: Pasar lambda a rxJava. ¿ Tiene sentido ? Quizás por que en este momento solo se procesarían los datos actuales.
+        // TODO: Si hubiese una actualización ¿Como se entera la App de que los datos han cambiado ? Mejjj .... autorespuesta.
+
+        // Filtramos con lambda, ya que tenemos cargadas los datos.
+        countryData = countryData.stream()
+                    .filter(country -> (name == null || country.getName().toLowerCase().contains(name.toLowerCase()))
+                            && (region == null || country.getRegion().toLowerCase().contains(region.toLowerCase()))
+                            && (independent == null || country.getIndependent().equals(independent)))
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
     }
 }
