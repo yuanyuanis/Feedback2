@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
@@ -48,19 +49,22 @@ public class CountryController {
         // 1) Observable
         countryData = FXCollections.observableArrayList();
 
-        // 2) Llamada a la API
+        // Creamos el servicio
         CountriesService countriesService = new CountriesService();
+
+        // LLamamos a la API
         countriesService.getAllCountries()
                 .flatMap(Observable::from)
                 .doOnCompleted(() -> System.out.println("Listado de países descargado"))
                 .doOnError(throwable -> System.out.println(throwable.getMessage()))
                 .subscribeOn(Schedulers.from(Executors.newCachedThreadPool()))
-                .subscribe(System.out::println);
+                .subscribe(countries -> {
+                    // 3) Ponemos los datos.
+                    countryData.addAll(countries);
+                });
 
 
-        countryData.addAll(countriesService.getAllCountries());
-
-        // 3) Ponemos los datos.
+        // 4) Añadir a la tabla
         countryTable.setItems(countryData);
     }
 
