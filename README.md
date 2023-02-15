@@ -4,7 +4,7 @@
 - El ejercicio de Feedback2 se presentan los proyectos `JavaFX` como proyectos independientes.
 - Los proyectos `Swing` o `stream` estan en `feedback2`. 
 
-##  1.  [Observer Aviones](.tree/main/feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/observer/aviones)
+##  1.  [Observer Aviones](https://github.com/yuanyuanis/Feedback2/tree/main/feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/observer/aviones)
 
 Se ha realizado implementación sobre ejercicio original que escuchaba con la clase deprecada en nuevas versiones de Java `Observable`.
 
