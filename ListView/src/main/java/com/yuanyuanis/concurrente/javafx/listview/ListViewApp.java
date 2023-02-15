@@ -34,7 +34,6 @@ public class ListViewApp extends Application {
             if(validarDatosEntrada(anio, nombrePelicula)) {
                 peliculas.add(new Pelicula(Integer.valueOf(anio.getText()), nombrePelicula.getText()));
 
-                // Limpiar campos
                 nombrePelicula.clear();
                 anio.clear();
             }
