@@ -4,11 +4,11 @@
 - El ejercicio de Feedback2 se presentan los proyectos `JavaFX` como proyectos independientes.
 - Los proyectos `Swing` o `stream` estan en `feedback2`. 
 
-##  1.  Observer Aviones
+##  1.  [Observer Aviones](.feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/observer/aviones)
 
 Se ha realizado implementación sobre ejercicio original que escuchaba con la clase deprecada en nuevas versiones de Java `Observable`.
 
-En este caso tenemos Avion con la propiedad `PropertyChangeSupport` y AvionPerseguidor que implementa `PropertyChangeListener`.
+En este caso tenemos Avión con la propiedad `PropertyChangeSupport` y AvionPerseguidor que implementa `PropertyChangeListener`.
 
 
 ## 2. ListView
@@ -36,7 +36,7 @@ Código relevante
 
 Menú en consola de comandos que en función de la opción seleccionada llama a la clase `CiudadService` que tiene métodos con las implementaciones lambda sobre la colección `CiudadDataSet`. 
 
-![](imagenes/StreamsDiagram.jpg).
+![](imagenes/StreamsDiagram.JPG).
 
 ## 4. Future/CompletableFuture Descargar Ficheros
 
