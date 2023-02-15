@@ -1,4 +1,4 @@
-# Feedback2-
+# Feedback 2 Concurrente.
 
 - ***Juan Ibáñez Blanco***
 - El ejercicio de Feedback2 se presentan los proyectos `JavaFX` como proyectos independientes.
