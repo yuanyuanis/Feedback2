@@ -13,11 +13,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-import java.util.List;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 public class CountryController {
+
+    private CountriesService countriesService = new CountriesService();
 
     private ObservableList<Country> countryData;
     @FXML private TableView<Country> countryTable;
@@ -49,10 +49,7 @@ public class CountryController {
         // 1) Observable
         countryData = FXCollections.observableArrayList();
 
-        // Creamos el servicio
-        CountriesService countriesService = new CountriesService();
-
-        // LLamamos a la API
+        // LLamamos inicial a la API
         countriesService.getAllCountries()
                 .flatMap(Observable::from)
                 .doOnCompleted(() -> System.out.println("Listado de países descargado"))
@@ -73,15 +70,37 @@ public class CountryController {
         Boolean independent = independentCheckBox.isSelected();
         String region = regionField.getText();
 
-        // TODO: Pasar lambda a rxJava. ¿ Tiene sentido ? Quizás por que en este momento solo se procesarían los datos actuales.
-        // TODO: Si hubiese una actualización ¿Como se entera la App de que los datos han cambiado ? Mejjj .... autorespuesta.
+        countriesService.getAllCountries()
+                .subscribeOn(Schedulers.io())
+                .flatMap(Observable::from)
+                .filter(country -> {
+                    boolean existeName = true;
+                    boolean existeIndependent = true;
+                    boolean existeRegion = true;
 
-        // Filtramos con lambda, ya que tenemos cargadas los datos.
-        countryData = countryData.stream()
-                    .filter(country -> (name == null || country.getName().toLowerCase().contains(name.toLowerCase()))
-                            && (region == null || country.getRegion().toLowerCase().contains(region.toLowerCase()))
-                            && (independent == null || country.getIndependent().equals(independent)))
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+                    if (!name.isEmpty()) {
+                        existeName = country.getName().toLowerCase().contains(name.toLowerCase());
+                    }
+
+                    if (!region.isEmpty()) {
+                        existeRegion = country.getRegion().toLowerCase().contains(region.toLowerCase());
+                    }
+
+                    if (independent != null) {
+                        existeIndependent = country.getIndependent() == independent;
+                    }
+
+                    return existeName && existeIndependent && existeRegion;
+                })
+                .toList()
+                .subscribe(paisesFiltrados -> {
+                    // Pasamos a observable los países filtrados
+                    countryData = FXCollections.observableArrayList(paisesFiltrados);
+
+                    // Establecemos los países en su tabla
+                    countryTable.setItems(countryData);
+                });
+
 
     }
 }
