@@ -2,6 +2,8 @@ package com.yuanyuanis.concurrente.restcountriesv3.controller;
 
 import com.yuanyuanis.concurrente.restcountriesv3.domain.Country;
 import com.yuanyuanis.concurrente.restcountriesv3.service.CountriesService;
+import rx.Observable;
+import rx.schedulers.Schedulers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class CountryController {
@@ -47,6 +50,14 @@ public class CountryController {
 
         // 2) Llamada a la API
         CountriesService countriesService = new CountriesService();
+        countriesService.getAllCountries()
+                .flatMap(Observable::from)
+                .doOnCompleted(() -> System.out.println("Listado de países descargado"))
+                .doOnError(throwable -> System.out.println(throwable.getMessage()))
+                .subscribeOn(Schedulers.from(Executors.newCachedThreadPool()))
+                .subscribe(System.out::println);
+
+
         countryData.addAll(countriesService.getAllCountries());
 
         // 3) Ponemos los datos.

@@ -2,7 +2,8 @@ package com.yuanyuanis.concurrente.restcountriesv3.service;
 
 
 import com.yuanyuanis.concurrente.restcountriesv3.domain.Country;
-import retrofit2.Call;
+
+import rx.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -11,9 +12,10 @@ import java.util.List;
 
 public interface CountriesApiService {
 
-    @GET("/v2/all")
-    Call<List<Country>> getAllCountries();
+    @GET("/rest/v2/all")
+    Observable<List<Country>> getAllCountries();
 
-    @GET("/v2/name/{name}")
-    Call<List<Country>> getCountry(@Path("name") String name);
+    // Cuidado! Aunque la respuesta en un solo país viene en forma de array
+    @GET("/rest/v2/name/{name}")
+    Observable<List<Country>> getCountry(@Path("name") String name);
 }

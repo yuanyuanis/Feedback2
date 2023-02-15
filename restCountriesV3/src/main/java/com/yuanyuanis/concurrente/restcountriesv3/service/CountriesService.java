@@ -1,9 +1,11 @@
 package com.yuanyuanis.concurrente.restcountriesv3.service;
 
 import com.yuanyuanis.concurrente.restcountriesv3.domain.Country;
+import rx.Observable;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
@@ -17,21 +19,17 @@ public class CountriesService {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://restcountries.com/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-
         api = retrofit.create(CountriesApiService.class);
     }
 
-    public List<Country> getAllCountries() {
-        Call<List<Country>> allCountriesCall = api.getAllCountries();
-        try {
-            Response<List<Country>> response = allCountriesCall.execute();
-            return response.body();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+    public Observable<List<Country>> getAllCountries() {
+        return api.getAllCountries();
+    }
 
-        return null;
+    public Observable<List<Country>> getCountry(String name) {
+        return api.getCountry(name);
     }
 
 }
