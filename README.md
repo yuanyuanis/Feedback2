@@ -2,16 +2,16 @@
 
 - ***Juan Ibáñez Blanco***
 - El ejercicio de Feedback2 se presentan los proyectos `JavaFX` como proyectos independientes.
-- Los proyectos `Swing` o `stream` estan en `feedback2`. 
+- Los proyectos `Swing`, `stream` y `Observer` estan en `feedback2`. 
 
-##  1.  [Observer Aviones](https://github.com/yuanyuanis/Feedback2/tree/main/feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/observer/aviones)
+##  1.  Observer Aviones [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/observer/aviones)
 
 Se ha realizado implementación sobre ejercicio original que escuchaba con la clase deprecada en nuevas versiones de Java `Observable`.
 
 En este caso tenemos Avión con la propiedad `PropertyChangeSupport` y AvionPerseguidor que implementa `PropertyChangeListener`.
 
 
-## 2. ListView
+## 2. ListView [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/ListView/src/main/java/com/yuanyuanis/concurrente/javafx/listview)
 
 Aplicación en JavaFX que muestra un `ListView<Pelicula>` y añade películas en una `ObservableList` actualizable cuando introducimos un item elemento por pantalla.
 
@@ -32,13 +32,13 @@ Código relevante
         });
 ```
 
-## 3. Streams
+## 3. Streams [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/streams)
 
 Menú en consola de comandos que en función de la opción seleccionada llama a la clase `CiudadService` que tiene métodos con las implementaciones lambda sobre la colección `CiudadDataSet`. 
 
 ![](imagenes/StreamsDiagram.JPG).
 
-## 4. Future/CompletableFuture Descargar Ficheros
+## 4. Future yCompletableFuture Descargar Ficheros [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/completableFuture/descargarFicheros)
 
 Aplicación en swing para descarga de archivos vía URL con dos implementaciones que dependen de un `radio button seleccionado`.
 
@@ -46,7 +46,7 @@ Aplicación en swing para descarga de archivos vía URL con dos implementaciones
     - Future.
     - CompletableFuture.
 
-## 5. Future/CompletableFuture Zip and Copy 
+## 5. Future/CompletableFuture Zip and Copy [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/feedback2/src/main/java/com/yuanyuanis/concurrente/feedback2/completableFuture/copiarYZippear) 
 
 Aplicación en swing para hacer un zip de una carpeta y mover a destino con dos implementaciones. En esta ocasión para lograr las dos implementaciones tenemos que volver a ejecutar cambiando la implementación de la interfaz (descomentar el siguiente código).
 
@@ -55,7 +55,7 @@ Aplicación en swing para hacer un zip de una carpeta y mover a destino con dos 
 
 ![](imagenes/ZipCopy.JPG).
 
-## 6. RestCountries V1
+## 6. RestCountries V1 [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/RestCountries/src/main/java/com/yuanyuanis/concurrente/restcountries)
 
 - Implementación básica en JavaFX que llama a la API RestCountries, devuelve los nombres de los países y los lista. 
 
@@ -63,13 +63,13 @@ Aplicación en swing para hacer un zip de una carpeta y mover a destino con dos 
 
 ![](imagenes/RetroFitV1.JPG).
 
-## 7. RestCountries V2
+## 7. RestCountries V2 [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/RestCountries2_CountriesDetail/src/main/java/com/yuanyuanis/concurrente/restcountries/restcountries2_countriesdetail)
 
 - V2 de RestCountries, se muestran los detalles. 
 
 ![](imagenes/RetroFitV2.JPG).
 
-## 8. RestCountries V3
+## 8. RestCountries V3 [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/restCountriesV3/src/main/java/com/yuanyuanis/concurrente/restcountriesv3)
 
 - V3 de RestCountries
 
@@ -148,7 +148,7 @@ Aplicación en swing para hacer un zip de una carpeta y mover a destino con dos 
 
 ![](imagenes/RetroFitvV3.JPG).
 
-## 9. OpenFoodFacts
+## 9. OpenFoodFacts [link al código](https://github.com/yuanyuanis/Feedback2/tree/main/openFoodFactsJavaFX/src/main/java/com/yuanyuanis/openfoodfactsjavafx)
 
 - Proyecto JavaFX
 - Se ha usado el jar envoltorio o wrapper del que dispone OpenFoodFacts. 
