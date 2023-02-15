@@ -100,7 +100,5 @@ public class CountryController {
                     // Establecemos los países en su tabla
                     countryTable.setItems(countryData);
                 });
-
-
     }
 }
